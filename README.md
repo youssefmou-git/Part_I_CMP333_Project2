@@ -178,9 +178,3 @@ Your implementation must work with the provided files as-is.
 
 ---
 
-## Notes
-
-- Ensure your code runs without syntax errors before submission.  
-- You may add small print statements for debugging, but remove them before submission.  
-- Each algorithm must return both the numeric value and the corresponding best move.  
-- Maintain function signatures and file names exactly as provided.
