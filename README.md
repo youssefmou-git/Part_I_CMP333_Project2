@@ -159,14 +159,6 @@ Player O -> cell 0
 Result: Draw
 ```
 
-## Grading and Expectations
-
-You will be graded based on:
-- Correct implementation of Minimax, Alpha-Beta, and Expectimax algorithms.  
-- Proper recursive logic and adherence to pruning behavior.  
-- Correct handling of terminal and non-terminal states.  
-- Consistent and working execution using the provided commands.  
-
 Do not modify:
 - `game.py`  
 - `agent_base.py`  
