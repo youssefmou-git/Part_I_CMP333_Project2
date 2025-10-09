@@ -111,6 +111,27 @@ To test how an algorithm performs against itself:
 python run_game.py -p AlphaBetaAgent --opp AlphaBetaAgent
 ```
 
+### Human vs AI
+Play against any of the AI agents interactively. The game randomly chooses who starts first (human or AI):
+```
+# Play against Alpha-Beta agent
+python run_game.py --human AlphaBetaAgent
+
+# Play against Minimax agent
+python run_game.py --human MinimaxAgent
+
+# Play against Expectimax agent
+python run_game.py --human ExpectimaxAgent
+
+# Play against AI with depth limit
+python run_game.py --human AlphaBetaAgent --depth 3
+```
+
+In human vs AI mode:
+- Choose your moves by entering numbers 0-8 corresponding to board positions
+- The grid reference shows: `0 | 1 | 2` (top row), `3 | 4 | 5` (middle row), `6 | 7 | 8` (bottom row)
+- The AI and human symbols (X or O) are assigned randomly at the start
+
 ## Command-Line Options
 
 | Option | Description | Default |
@@ -118,6 +139,7 @@ python run_game.py -p AlphaBetaAgent --opp AlphaBetaAgent
 | `-p, --player` | Agent for player X | AlphaBetaAgent |
 | `--opp, --opponent` | Agent for player O | ExpectimaxAgent |
 | `--depth` | Maximum search depth | Full search |
+| `--human` | Play against chosen AI agent | None (AI vs AI mode) |
 
 ## Output Format
 
