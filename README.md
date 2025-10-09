@@ -1,5 +1,12 @@
-# Tic-Tac-Toe AI Project
+<h2 align="center">
+    <strong>Tic-Tac-Toe AI Project</strong>
+</h2> 
 
+<div align="center">
+<img src="https://github.com/user-attachments/assets/04b0e762-6712-4e10-8a09-16409cd2e69e" alt="Board" width="200">
+</div>
+<br>
+<br>
 This project introduces students to adversarial search in artificial intelligence through the implementation of several game-playing agents. The objective is to develop intelligent agents that can play Tic-Tac-Toe optimally or near-optimally using classical AI search algorithms.
 
 ## Overview
