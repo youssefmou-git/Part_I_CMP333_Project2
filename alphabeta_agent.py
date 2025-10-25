@@ -20,21 +20,38 @@ class AlphaBetaAgent(Agent):
     def alphabeta(self, state: GameState, alpha, beta, depth_limit, current_depth):
         """
         Recursive alpha-beta search returning (value, best_action).
-        
-        TODO: Implement the alpha-beta pruning algorithm here.
-        
-        The algorithm should:
-        1. Check if the state is terminal and return (utility, None) if so
-        2. Check if depth limit is reached and use heuristic evaluation if so
-        3. For MAX player ('X'): 
-           - Find action that maximizes value
-           - Update alpha and prune when alpha >= beta
-        4. For MIN player ('O'):
-           - Find action that minimizes value  
-           - Update beta and prune when beta <= alpha
-        5. Return the best value and corresponding action as a tuple
-        
-        Hint: Use betterEvaluationFunction(state) for non-terminal cutoff evaluation
         """
-        # TODO: Remove this line and implement the alpha-beta algorithm
-        raise NotImplementedError("Alpha-beta pruning algorithm not implemented yet")
+        # 1) stop if game ended
+        if state.is_terminal():
+            return state.utility(), None
+        # 2) stop if we hit the depth limit, use heuristic
+        if depth_limit is not None and current_depth >= depth_limit:
+            return betterEvaluationFunction(state), None
+
+        # 3) maximizer turn
+        if state.to_move == 'X':
+            best_val = float('-inf')
+            best_act = None
+            for a in state.get_legal_actions():
+                succ = state.generate_successor(a)
+                val, _ = self.alphabeta(succ, alpha, beta, depth_limit, current_depth + 1)
+                if val > best_val:
+                    best_val, best_act = val, a
+                alpha = max(alpha, best_val)
+                if alpha >= beta:  # prune
+                    break
+            return best_val, best_act
+
+        # 4) minimizer turn
+        else:
+            best_val = float('inf')
+            best_act = None
+            for a in state.get_legal_actions():
+                succ = state.generate_successor(a)
+                val, _ = self.alphabeta(succ, alpha, beta, depth_limit, current_depth + 1)
+                if val < best_val:
+                    best_val, best_act = val, a
+                beta = min(beta, best_val)
+                if beta <= alpha:  # prune
+                    break
+            return best_val, best_act
