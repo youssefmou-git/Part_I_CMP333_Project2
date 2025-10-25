@@ -9,19 +9,34 @@ class MinimaxAgent(Agent):
 
     def minimax(self, state, depth_limit=None):
         """
-        Returns: (value, best_action)
-        
-        TODO: Implement the minimax algorithm here.
-        
-        The algorithm should:
-        1. Check if the state is terminal and return (utility, None) if so
-        2. For MAX player ('X'): find the action that maximizes the minimum value
-        3. For MIN player ('O'): find the action that minimizes the maximum value
-        4. Recursively call minimax on successor states
-        5. Return the best value and corresponding action as a tuple
-        
-        Hint: Use state.is_terminal(), state.utility(), state.get_legal_actions(),
-              state.generate_successor(), and state.to_move
+        Minimax basically looks ahead at all the possible game states.
+        X is the maximizing player, O is the minimizing one.
+        We go down the tree until the game is over and then bubble the values back up.
         """
-        # TODO: Remove this line and implement the minimax algorithm
-        raise NotImplementedError("Minimax algorithm not implemented yet")
+
+        # 1) if the game already ended, just give back the utility score
+        if state.is_terminal():
+            return state.utility(), None
+
+        # 2) if it's X’s turn, try to get the biggest value
+        if state.to_move == 'X':
+            best_val = float('-inf')
+            best_act = None
+            for a in state.get_legal_actions():
+                # make the move and check what happens
+                succ = state.generate_successor(a)
+                val, _ = self.minimax(succ)
+                if val > best_val:
+                    best_val, best_act = val, a
+            return best_val, best_act
+
+        # 3) if it's O’s turn, try to make the value as small as possible
+        else:
+            best_val = float('inf')
+            best_act = None
+            for a in state.get_legal_actions():
+                succ = state.generate_successor(a)
+                val, _ = self.minimax(succ)
+                if val < best_val:
+                    best_val, best_act = val, a
+            return best_val, best_act
